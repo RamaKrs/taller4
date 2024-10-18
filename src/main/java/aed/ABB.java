@@ -5,20 +5,23 @@ import java.util.*;
 // Todos los tipos de datos "Comparables" tienen el método compareTo()
 // elem1.compareTo(elem2) devuelve un entero. Si es mayor a 0, entonces elem1 > elem2
 public class ABB<T extends Comparable<T>> implements Conjunto<T> {
-    // Agregar atributos privados del Conjunto
+    Nodo raiz;
+    int cardinalidad;
 
     private class Nodo {
         // Agregar atributos privados del Nodo
-
+        Nodo izq, der, pred;
+        T val;
         // Crear Constructor del nodo
     }
 
     public ABB() {
-        throw new UnsupportedOperationException("No implementada aun");
+        this.raiz = null;
+        this.cardinalidad = 0;
     }
 
     public int cardinal() {
-        throw new UnsupportedOperationException("No implementada aun");
+        return this.cardinalidad;
     }
 
     public T minimo(){
@@ -34,7 +37,18 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
     }
 
     public boolean pertenece(T elem){
-        throw new UnsupportedOperationException("No implementada aun");
+        int i = cardinalidad;
+        Nodo curNodo = this.raiz;
+        while (cardinalidad > 0) {
+            if(curNodo.val == elem) {
+                return true;
+            } else if (elem.compareTo(curNodo.val) < 0) {
+                curNodo = curNodo.izq;
+            } else { 
+                curNodo = curNodo.der;
+            }
+        }
+        return false;
     }
 
     public void eliminar(T elem){
