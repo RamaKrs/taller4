@@ -13,6 +13,13 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
         Nodo izq, der, pred;
         T val;
         // Crear Constructor del nodo
+
+        Nodo(T elem) {
+            this.izq = null;
+            this.der = null;
+            this.pred = null;
+            this.val = elem;
+        }
     }
 
     public ABB() {
@@ -33,13 +40,21 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
     }
 
     public void insertar(T elem){
-        throw new UnsupportedOperationException("No implementada aun");
+        Nodo insNodo = new Nodo(elem);
+
+        int i = cardinalidad;
+        Nodo curNodo = this.raiz;
+
+        while (i > 0) {
+            
+            i--;
+        }
     }
 
     public boolean pertenece(T elem){
         int i = cardinalidad;
         Nodo curNodo = this.raiz;
-        while (cardinalidad > 0) {
+        while (i > 0) {
             if(curNodo.val == elem) {
                 return true;
             } else if (elem.compareTo(curNodo.val) < 0) {
@@ -47,6 +62,7 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
             } else { 
                 curNodo = curNodo.der;
             }
+            i--;
         }
         return false;
     }
