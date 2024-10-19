@@ -45,16 +45,47 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
         int i = cardinalidad;
         Nodo curNodo = this.raiz;
 
-        while (i > 0) {
+        if (curNodo == null) {
+            this.raiz = insNodo;
+            this.cardinalidad++;
+        } else {
+            while (i > 0) {
+                if(curNodo.val == elem) break; 
+                else if (elem.compareTo(curNodo.val) < 0) {
+    
+                    if (curNodo.izq == null) {
+                        curNodo.izq = insNodo;
+                        insNodo.pred = curNodo;
+                        this.cardinalidad++;
+                        break;
+                    } else {
+                        curNodo = curNodo.izq;
+                    }
+                } else if (elem.compareTo(curNodo.val) > 0) {
+                    if (curNodo.der == null) {
+                        curNodo.der = insNodo;
+                        insNodo.pred = curNodo;
+                        this.cardinalidad++;
+                        break;
+                    } else {
+                        curNodo = curNodo.der;
+                    }
+                }
+                i--;
+            }
             
-            i--;
         }
+        
+        
     }
 
     public boolean pertenece(T elem){
         int i = cardinalidad;
         Nodo curNodo = this.raiz;
         while (i > 0) {
+            if(curNodo == null) {
+                return false;
+            }
             if(curNodo.val == elem) {
                 return true;
             } else if (elem.compareTo(curNodo.val) < 0) {
